@@ -834,28 +834,27 @@ a {
   bottom: 15px;
   left: 15px;
   right: 15px;
+  max-width: calc(100% - 30px);
   display: flex;
   flex-wrap: wrap-reverse;
   align-items: center;
+  justify-content: flex-start;
   gap: 15px 10px;
   z-index: 1;
 }
 
 .banner-actions-btn {
   color: var(--white);
-  font-size: var(--fs-6);
+  font-size: 0.813rem;
   line-height: 1;
   display: flex;
   align-items: flex-end;
   gap: 4px;
+  flex-shrink: 0;
 }
 
 .banner-actions-btn ion-icon {
   font-size: 16px;
-}
-
-.banner-actions-btn:first-child {
-  margin-right: auto;
 }
 
 .banner-actions-btn:is(:hover, :focus) {
@@ -1304,6 +1303,254 @@ a {
   color: var(--orange-soda);
 }
 
+
+
+
+
+/* =========================
+ Contact Section
+========================= */
+
+.contact-section {
+  margin: 40px 0;
+  padding: 0 16px;
+}
+
+
+/* =========================
+ Contact Card
+========================= */
+
+.contact-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  background-color: #f3f4f6;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+/* =========================
+ Image
+========================= */
+
+.contact-image {
+  position: relative;
+  min-height: 400px;
+}
+
+.contact-image img {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+/* Google iframe */
+.map-container {
+width: 100%;
+max-width: 100%;
+height: 400px;
+overflow: hidden;
+}
+
+.map-container iframe {
+width: 100%;
+height: 100%;
+border: 0;
+display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+.map-container {
+  height: 300px;
+}
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+.map-container {
+  height: 250px;
+}
+}
+/* =========================
+ Contact Content
+========================= */
+
+.contact-content {
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-content h1 {
+  margin: 0 0 16px;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.contact-content p {
+  margin: 0 0 24px;
+
+  color: #4b5563;
+
+  line-height: 1.6;
+}
+
+
+/* =========================
+ Form
+========================= */
+
+form {
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+
+/* =========================
+ Inputs
+========================= */
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+textarea {
+  display: block;
+
+  margin-bottom: 16px;
+
+  resize: vertical;
+}
+
+
+/* =========================
+ Focus
+========================= */
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #1c1917;
+
+  box-shadow: 0 0 0 2px rgba(28, 25, 23, 0.15);
+}
+
+
+/* =========================
+ Submit Button
+========================= */
+
+button {
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: #1c1917;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #44403c;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+
+/* =========================
+ Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+  .contact-section {
+    margin: 30px 0;
+    padding: 0 16px;
+  }
+
+  .contact-card {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-image {
+    min-height: 300px;
+  }
+
+  .contact-content {
+    padding: 30px 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-content h1 {
+    font-size: 24px;
+  }
+
+}
 
 
 
@@ -1822,6 +2069,10 @@ a {
     all: unset;
   }
 
+  .header-bottom-actions {
+    display: none;
+  }
+
   .navbar-list {
     display: flex;
     align-items: center;
@@ -1916,231 +2167,6 @@ a {
   .cta-card {
     --fs-2: 2.25rem;
     padding-inline: 60px;
-  }
-
-  /* =========================
-   Contact Section
-========================= */
-
-  .contact-section {
-    margin: 40px 0;
-    padding: 0 16px;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-
-  /* =========================
-   Contact Card
-========================= */
-
-  .contact-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    background-color: #f3f4f6;
-
-    border-radius: 8px;
-
-    overflow: hidden;
-
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-
-
-  /* =========================
-   Image
-========================= */
-
-  .contact-image {
-    position: relative;
-    min-height: 400px;
-  }
-
-  .contact-image img {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-  }
-
-
-  /* =========================
-   Contact Content
-========================= */
-
-  .contact-content {
-    padding: 40px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .contact-content h1 {
-    margin: 0 0 16px;
-
-    font-size: 28px;
-    font-weight: 700;
-
-    color: #111827;
-  }
-
-  .contact-content p {
-    margin: 0 0 24px;
-
-    color: #4b5563;
-
-    line-height: 1.6;
-  }
-
-
-  /* =========================
-   Form
-========================= */
-
-  form {
-    width: 100%;
-  }
-
-  .form-grid {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 16px;
-
-    margin-bottom: 16px;
-  }
-
-
-  /* =========================
-   Inputs
-========================= */
-
-  input,
-  select,
-  textarea {
-    width: 100%;
-
-    box-sizing: border-box;
-
-    padding: 12px;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    background-color: #ffffff;
-
-    border: 1px solid #d1d5db;
-
-    border-radius: 6px;
-
-    outline: none;
-
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  textarea {
-    display: block;
-
-    margin-bottom: 16px;
-
-    resize: vertical;
-  }
-
-
-  /* =========================
-   Focus
-========================= */
-
-  input:focus,
-  select:focus,
-  textarea:focus {
-    border-color: #1c1917;
-
-    box-shadow: 0 0 0 2px rgba(28, 25, 23, 0.15);
-  }
-
-
-  /* =========================
-   Submit Button
-========================= */
-
-  button {
-    width: 100%;
-
-    padding: 12px;
-
-    border: none;
-    border-radius: 6px;
-
-    background-color: #1c1917;
-
-    color: #ffffff;
-
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 500;
-
-    cursor: pointer;
-
-    transition:
-      background-color 0.3s ease,
-      transform 0.2s ease;
-  }
-
-  button:hover {
-    background-color: #44403c;
-  }
-
-  button:active {
-    transform: scale(0.99);
-  }
-
-
-  /* =========================
-   Mobile
-========================= */
-
-  @media (max-width: 768px) {
-
-    .contact-section {
-      margin: 30px 0;
-      padding: 0 16px;
-    }
-
-    .contact-card {
-      grid-template-columns: 1fr;
-    }
-
-    .contact-image {
-      min-height: 300px;
-    }
-
-    .contact-content {
-      padding: 30px 20px;
-    }
-
-    .form-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .contact-content h1 {
-      font-size: 24px;
-    }
-
   }
 
   /**
