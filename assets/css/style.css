@@ -2181,4 +2181,13 @@ button:active {
     flex-basis: 700px;
   }
 
+/* Netlify badge */
+/* Example if the badge uses a class name like .netlify-badge */
+.netlify-badge {
+    display: none !important;
+}
+
+/* Example if it is injected as an overlay wrapper */
+#netlify-overlay {
+    display: none !important;
 }
