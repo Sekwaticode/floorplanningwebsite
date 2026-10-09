@@ -15,7 +15,7 @@ const Hero: FC = () => {
   return (
     <div id="home">
       <WorkPageHero
-        imageSrc="/images/hero-epoxy-floor.jpg"
+        imageSrc="/images/hero-image-flooring.jpg"
         imageAlt="Installer rolling a glossy self-levelling epoxy floor coating"
         topWord="floors"
         rightWord="built to"
