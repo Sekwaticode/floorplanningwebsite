@@ -1,4 +1,5 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, FC } from "react";
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 
 type Variant = "primary" | "secondary" | "light";
@@ -20,12 +21,19 @@ type ButtonProps = { variant?: Variant } & (
   | ({ href?: undefined } & ButtonHTMLAttributes<HTMLButtonElement>)
 );
 
-/** Renders a link when given an `href`, otherwise a button. */
+/**
+ * Renders a link when given an `href` (a client-side `Link` for routes on
+ * this site), otherwise a button.
+ */
 const Button: FC<ButtonProps> = ({ variant = "primary", className, ...props }) => {
   const classes = twMerge(base, variants[variant], className);
 
   if (props.href !== undefined) {
-    return <a className={classes} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)} />;
+    const { href, ...rest } = props as AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+    if (href.startsWith("/")) {
+      return <Link href={href} className={classes} {...rest} />;
+    }
+    return <a href={href} className={classes} {...rest} />;
   }
   return (
     <button

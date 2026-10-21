@@ -1,18 +1,16 @@
 import { FC } from "react";
 import Button from "@/components/Button";
+import FoldHeading from "@/components/FoldHeading";
+import HazardStripe from "@/components/HazardStripe";
 import { site } from "@/lib/site";
 
 const Contact: FC = () => {
   return (
     <section id="contact" className="bg-hazard">
-      {/* hazard-stripe edge */}
-      <div
-        className="h-3 bg-[repeating-linear-gradient(-45deg,var(--color-stone-950)_0_14px,transparent_14px_28px)]"
-        aria-hidden="true"
-      />
+      <HazardStripe />
       <div className="container py-24 md:py-32 lg:py-40">
         <h2 className="text-5xl md:text-8xl lg:text-9xl font-bold leading-[0.92] tracking-tighter max-w-[12ch]">
-          Let&apos;s Transform Your Floor
+          <FoldHeading text="Let's Transform Your Floor" />
         </h2>
         <div className="mt-12 md:mt-16 grid md:grid-cols-2 gap-10 md:gap-16 items-end">
           <p className="text-lg md:text-xl max-w-[48ch]">

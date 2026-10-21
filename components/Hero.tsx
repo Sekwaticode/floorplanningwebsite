@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Button from "@/components/Button";
+import FoldHeading from "@/components/FoldHeading";
 import { WorkPageHero } from "@/components/ui/work-page-hero";
 import { site } from "@/lib/site";
 
@@ -32,7 +33,7 @@ const Hero: FC = () => {
             {site.tagline}
           </p>
           <h1 className="mt-6 text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter max-w-[13ch]">
-            Professional Floors. Built to Perform.
+            <FoldHeading text="Professional Floors. Built to Perform." />
           </h1>
           <div className="mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <p className="text-lg md:text-xl text-stone-600 max-w-[46ch]">
@@ -41,8 +42,8 @@ const Hero: FC = () => {
               across South Africa.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button href="#contact">Request a Quote</Button>
-              <Button href="#services" variant="secondary">
+              <Button href="/contact">Request a Quote</Button>
+              <Button href="/services" variant="secondary">
                 Our Services
               </Button>
             </div>

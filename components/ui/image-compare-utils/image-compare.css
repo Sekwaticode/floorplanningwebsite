@@ -1,0 +1,136 @@
+/* Design tokens are scoped to the slider so they don't override the site theme. */
+.ic-root {
+  --ic-surface-raised: oklch(100% 0 0);
+  --ic-foreground: oklch(15% 0 0);
+  --ic-border-strong: oklch(82% 0 0);
+  --ic-shadow-raised: 0 6px 18px oklch(0% 0 0 / 0.065), 0 1px 3px oklch(0% 0 0 / 0.035);
+  --ic-ring: #f2b705;
+  --ic-duration-fast: 160ms;
+  --ic-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ic-root[data-orientation="vertical"] {
+  cursor: ns-resize;
+  touch-action: pan-x;
+}
+
+.ic-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.ic-layer > img,
+.ic-layer > picture,
+.ic-layer > picture > img,
+.ic-layer > video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.ic-chip {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 0.3rem 0.65rem;
+  border-radius: 9999px;
+  background: oklch(15% 0 0 / 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: oklch(100% 0 0);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.ic-chip[data-place="end"] {
+  left: auto;
+  right: 12px;
+}
+
+.ic-chip[data-place="bottom"] {
+  top: auto;
+  bottom: 12px;
+}
+
+/* Root-sized so percentage translates map onto the frame. */
+.ic-pivot {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ic-rotor,
+.ic-handleSlot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+.ic-line {
+  position: absolute;
+  left: -1px;
+  top: -150vmax;
+  width: 2px;
+  height: 300vmax;
+  background: var(--ic-surface-raised);
+  box-shadow: 0 0 6px oklch(0% 0 0 / 0.25);
+}
+
+.ic-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  background: var(--ic-surface-raised);
+  color: var(--ic-foreground);
+  border: 1px solid var(--ic-border-strong);
+  box-shadow: var(--ic-shadow-raised);
+  pointer-events: auto;
+  cursor: grab;
+  outline: none;
+  transition: box-shadow var(--ic-duration-fast) var(--ic-ease-standard);
+}
+
+.ic-root[data-dragging] .ic-handle {
+  cursor: grabbing;
+}
+
+.ic-handle:focus-visible:not([data-quiet]) {
+  box-shadow: var(--ic-shadow-raised), 0 0 0 3px var(--ic-ring);
+}
+
+.ic-chevrons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ic-chevron {
+  display: flex;
+  margin-inline: -2px;
+}

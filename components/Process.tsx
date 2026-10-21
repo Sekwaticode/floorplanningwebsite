@@ -2,6 +2,7 @@
 
 import { FC, useRef } from "react";
 import { motion, useScroll } from "motion/react";
+import FoldHeading from "@/components/FoldHeading";
 import SurfaceSwatch from "@/components/SurfaceSwatch";
 import { processSteps } from "@/lib/content";
 
@@ -21,7 +22,7 @@ const Process: FC = () => {
       <div className="container py-24 md:py-32 text-center">
         <div className="mx-auto max-w-2xl">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-            From Preparation to Final Finish
+            <FoldHeading text="From Preparation to Final Finish" />
           </h2>
           <p className="mt-8 text-lg md:text-xl text-stone-400">
             A successful flooring system starts with proper preparation. Every

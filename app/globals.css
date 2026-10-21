@@ -3,6 +3,25 @@
 @theme {
   --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
   --color-hazard: #f2b705;
+
+  /* shadcn/ui colour tokens, mapped onto the site's stone + hazard palette */
+  --color-background: var(--color-stone-200);
+  --color-foreground: var(--color-stone-900);
+  --color-primary: var(--color-stone-900);
+  --color-primary-foreground: var(--color-stone-100);
+  --color-secondary: var(--color-stone-300);
+  --color-secondary-foreground: var(--color-stone-900);
+  --color-accent: var(--color-hazard);
+  --color-accent-foreground: var(--color-stone-900);
+  --color-destructive: var(--color-red-600);
+  --color-destructive-foreground: var(--color-stone-100);
+  --color-muted: var(--color-stone-300);
+  --color-muted-foreground: var(--color-stone-600);
+  --color-card: var(--color-stone-100);
+  --color-card-foreground: var(--color-stone-900);
+  --color-border: var(--color-stone-300);
+  --color-input: var(--color-stone-400);
+  --color-ring: var(--color-hazard);
   --animate-marquee: marquee 40s linear infinite;
 
   @keyframes marquee {

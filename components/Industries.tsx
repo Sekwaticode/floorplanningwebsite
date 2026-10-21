@@ -1,4 +1,5 @@
 import { FC } from "react";
+import FoldHeading from "@/components/FoldHeading";
 import { industries } from "@/lib/content";
 
 const Industries: FC = () => {
@@ -7,7 +8,7 @@ const Industries: FC = () => {
       <div className="container">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <h2 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none">
-            Industries we serve
+            <FoldHeading text="Industries we serve" />
           </h2>
           <p className="text-lg text-stone-600 max-w-[34ch]">
             Flooring systems specified for the way each environment is used.

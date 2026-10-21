@@ -1,6 +1,8 @@
 "use client";
 
 import { FC, useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useAnimate } from "motion/react";
 import Button from "@/components/Button";
 import { navItems, site } from "@/lib/site";
@@ -8,6 +10,7 @@ import { navItems, site } from "@/lib/site";
 const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navScope, navAnimate] = useAnimate();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (isOpen) {
@@ -25,18 +28,6 @@ const Header: FC = () => {
     }
   }, [isOpen, navAnimate, navScope]);
 
-  const handleClickMobileNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    setIsOpen(false);
-    const url = new URL(e.currentTarget.href);
-    const hash = url.hash;
-    if (!hash) return;
-    const target = document.querySelector(hash);
-
-    if (!target) return;
-    target.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <header className="fixed top-0 left-0 w-full z-50">
       {/* Fullscreen Menu */}
@@ -50,15 +41,19 @@ const Header: FC = () => {
       >
         <nav className="mt-20 flex flex-col" aria-label="Main">
           {navItems.map(({ href, label }) => (
-            <a
+            <Link
               key={label}
               href={href}
               className="text-stone-200 border-t last:border-b border-stone-800 py-5 group/nav-item relative isolate"
-              onClick={handleClickMobileNavItem}
+              aria-current={pathname === href ? "page" : undefined}
+              onClick={() => setIsOpen(false)}
             >
               <div className="container flex items-center justify-between">
-                <span className="text-3xl group-hover/nav-item:pl-4 transition-all duration-500">
+                <span className="text-3xl group-hover/nav-item:pl-4 transition-all duration-500 flex items-center gap-4">
                   {label}
+                  {pathname === href && (
+                    <span className="size-2.5 rounded-full bg-hazard" aria-hidden="true" />
+                  )}
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +72,7 @@ const Header: FC = () => {
                 </svg>
               </div>
               <div className="absolute w-full h-0 bg-stone-800 group-hover/nav-item:h-full transition-all duration-500 bottom-0 -z-10"></div>
-            </a>
+            </Link>
           ))}
         </nav>
       </motion.div>
@@ -86,11 +81,11 @@ const Header: FC = () => {
       <div className="fixed top-0 left-0 w-full bg-black mix-blend-difference">
         <div className="flex justify-between items-center h-20 px-6">
           {/* Logo */}
-          <a href="#home" aria-label={`${site.name} home`}>
+          <Link href="/" aria-label={`${site.name} home`} onClick={() => setIsOpen(false)}>
             <span className="text-xl font-bold uppercase text-white whitespace-nowrap">
               {site.name}
             </span>
-          </a>
+          </Link>
 
           {/* Menu Button */}
           <div className="flex items-center gap-4">
@@ -132,14 +127,10 @@ const Header: FC = () => {
               </svg>
             </button>
             <Button
+              href="/contact"
               variant="light"
               className="hidden md:inline-flex items-center"
-              onClick={() => {
-                setIsOpen(false);
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
+              onClick={() => setIsOpen(false)}
             >
               Get a Quote
             </Button>

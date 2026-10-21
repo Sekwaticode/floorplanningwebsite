@@ -3,6 +3,7 @@
 import { FC, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
+import FoldHeading from "@/components/FoldHeading";
 import { faqs } from "@/lib/content";
 
 const FAQs: FC = () => {
@@ -12,7 +13,7 @@ const FAQs: FC = () => {
     <section id="faqs" className="section">
       <div className="container">
         <h2 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
-          FAQS
+          <FoldHeading text="FAQS" />
         </h2>
         <div className="mt-10 md:mt-16 lg:mt-20">
           {faqs.map(({ question, answer }, faqIndex) => (

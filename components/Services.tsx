@@ -1,8 +1,11 @@
 "use client";
 
 import { FC, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import Button from "@/components/Button";
+import FoldHeading from "@/components/FoldHeading";
 import SurfaceSwatch from "@/components/SurfaceSwatch";
 import { services } from "@/lib/content";
 
@@ -55,7 +58,7 @@ const Services: FC = () => {
             id="services-title"
             className="mt-5 text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.06] tracking-tight max-w-[12ch]"
           >
-            Flooring systems for every surface.
+            <FoldHeading text="Flooring systems for every surface." />
           </h2>
 
           <p className="mt-5 text-[17px] text-stone-600 max-w-[36ch]">
@@ -63,7 +66,7 @@ const Services: FC = () => {
             repair and maintain floors that are built to perform.
           </p>
 
-          <Button href="#contact" className="mt-8">
+          <Button href="/contact" className="mt-8">
             Request a Quote
           </Button>
 
@@ -86,7 +89,7 @@ const Services: FC = () => {
 
       {/* RIGHT: scrolling service cards */}
       <div className="flex flex-col gap-6 lg:gap-10 pt-10 pb-20 lg:pt-24 lg:pb-32">
-        {services.map(({ title, description, tags, surface }, i) => (
+        {services.map(({ title, description, tags, surface, image }, i) => (
           <motion.article
             key={title}
             ref={(el) => {
@@ -99,10 +102,20 @@ const Services: FC = () => {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] bg-stone-300">
-              <SurfaceSwatch
-                variant={surface}
-                className="size-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-              />
+              {image ? (
+                <Image
+                  src={image}
+                  alt={`${title} floor finish`}
+                  fill
+                  sizes="(min-width: 1024px) 55vw, 100vw"
+                  className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                />
+              ) : (
+                <SurfaceSwatch
+                  variant={surface}
+                  className="size-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                />
+              )}
               <span className="absolute left-4 bottom-4 rounded-full bg-stone-950/85 px-3.5 py-1.5 text-[13px] font-semibold text-stone-100 tabular-nums">
                 {pad(i + 1)} / {pad(services.length)}
               </span>
@@ -125,8 +138,8 @@ const Services: FC = () => {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="#contact"
+                <Link
+                  href="/contact"
                   className="group/link inline-flex items-center gap-2 text-[15.5px] font-semibold"
                 >
                   Get a quote
@@ -134,7 +147,7 @@ const Services: FC = () => {
                     <path d="M7 17 17 7M8 7h9v9" />
                   </svg>
                   <span className="sr-only">for {title}</span>
-                </a>
+                </Link>
               </div>
             </div>
           </motion.article>
