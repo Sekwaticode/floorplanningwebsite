@@ -1,7 +1,7 @@
 // Business details used across the site.
 // Every value marked PLACEHOLDER must be replaced before launch.
 export const site = {
-  name: "Surface Company.", // PLACEHOLDER: company name
+  name: "Surface Company", // PLACEHOLDER: company name
   tagline: "Specialist Flooring & Surface Solutions",
   email: "info@example.com", // PLACEHOLDER
   phone: "+27 00 000 0000", // PLACEHOLDER

@@ -22,6 +22,8 @@
   --color-border: var(--color-stone-300);
   --color-input: var(--color-stone-400);
   --color-ring: var(--color-hazard);
+  --color-popover: var(--color-stone-100);
+  --color-popover-foreground: var(--color-stone-900);
   --animate-marquee: marquee 40s linear infinite;
 
   @keyframes marquee {

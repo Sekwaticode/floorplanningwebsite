@@ -1,6 +1,7 @@
 "use client";
 
-import { FC, useState, useEffect } from "react";
+import { FC, MouseEvent, useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useAnimate } from "motion/react";
@@ -27,6 +28,15 @@ const Header: FC = () => {
       );
     }
   }, [isOpen, navAnimate, navScope]);
+
+  // Logo click: close the menu; on the home page, scroll back to the top.
+  const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    setIsOpen(false);
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
@@ -80,11 +90,13 @@ const Header: FC = () => {
       {/* Top Navigation */}
       <div className="fixed top-0 left-0 w-full bg-black mix-blend-difference">
         <div className="flex justify-between items-center h-20 px-6">
-          {/* Logo */}
-          <Link href="/" aria-label={`${site.name} home`} onClick={() => setIsOpen(false)}>
-            <span className="text-xl font-bold uppercase text-white whitespace-nowrap">
-              {site.name}
-            </span>
+          {/* Brand name; the emblem sits in its own layer below, in the gap on the left */}
+          <Link
+            href="/"
+            className="pl-14 text-xl font-bold uppercase text-white whitespace-nowrap"
+            onClick={handleLogoClick}
+          >
+            {site.name}
           </Link>
 
           {/* Menu Button */}
@@ -137,6 +149,25 @@ const Header: FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Emblem: kept outside the blended bar so it keeps its true colours */}
+      <Link
+        href="/"
+        aria-label={`${site.name} home`}
+        tabIndex={-1}
+        className="fixed top-0 left-6 h-20 flex items-center"
+        onClick={handleLogoClick}
+      >
+        <Image
+          src="/images/logos/surface-company/surface-company-emblem.svg"
+          alt=""
+          width={44}
+          height={44}
+          priority
+          unoptimized
+          className="size-11"
+        />
+      </Link>
     </header>
   );
 };

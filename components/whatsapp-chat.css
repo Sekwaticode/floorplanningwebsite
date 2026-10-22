@@ -34,7 +34,10 @@
 }
 
 .sticky-button a,
-.sticky-button label {
+.sticky-button button {
+  background: none;
+  border: 0;
+  padding: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -43,11 +46,11 @@
   transition: all 0.3s ease-out;
 }
 
-.sticky-button label svg.close-icon {
+.sticky-button button svg.close-icon {
   display: none;
 }
 
-.chat-menu:focus-visible + .sticky-button {
+.sticky-button:has(button:focus-visible) {
   outline: 3px solid var(--wa-ink);
   outline-offset: 3px;
 }
@@ -204,19 +207,19 @@
   fill: var(--wa-ink);
 }
 
-.chat-menu:checked + .sticky-button label {
+.sticky-button[data-state="open"] button {
   transform: rotate(360deg);
 }
 
-.chat-menu:checked + .sticky-button label svg.chat-icon {
+.sticky-button[data-state="open"] button svg.chat-icon {
   display: none;
 }
 
-.chat-menu:checked + .sticky-button label svg.close-icon {
+.sticky-button[data-state="open"] button svg.close-icon {
   display: table-cell;
 }
 
-.chat-menu:checked + .sticky-button + .sticky-chat {
+.sticky-chat[data-state="open"] {
   bottom: 90px;
   opacity: 1;
   visibility: visible;
@@ -224,7 +227,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .sticky-button,
-  .sticky-button label,
+  .sticky-button button,
   .sticky-chat,
   .sticky-chat .chat-button,
   .sticky-chat .chat-button svg {
